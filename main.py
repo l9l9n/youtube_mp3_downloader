@@ -20,22 +20,19 @@ def download_mp3(link):
     video = yt.streams.filter(only_audio=True).first()
 
     # Здесь можете указать путь или папку для загрузки файла
-    print('Куда хотите сохранить файл?\n Нажмите Enter и файл сохранится в текущей директории!')
+    print('Куда хотите сохранить файл?\nНажмите Enter и файл сохранится в текущей директории!')
     destination = input(">> ") or '.'
-
+    # Загрузка самого файла
     print("----- Loading -----")
     out_of_file = video.download(output_path=destination)
-
+    # Здесь мы отделяем название от mp4 и заменяем ее на mp3
     base, extend = os.path.splitext(out_of_file)
     new_file = base + '.mp3'
     os.rename(out_of_file, new_file)
     print("--- End loading ---")
 
 
-
-
 link = input("Введите ссылку: ")
-
 
 if __name__ == '__main__':
     print("--- Start ---")
